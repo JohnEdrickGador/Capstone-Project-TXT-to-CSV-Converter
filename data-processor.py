@@ -20,8 +20,9 @@ def isSinkNode():
 def csvMaker(entries, fileName, nodeNumber):
     fields = entries[0]
     csvFileName = f"{fileName}-Node-{nodeNumber}"
-
-    with open(csvFileName, mode = "w", newline='') as csvfile:
+    saveDestination = r"D:\Documents\School\UP_Diliman\Fourth-year\Second-Semester\CoE-199\CSV-Files"
+    directory = os.path.join(saveDestination,csvFileName)
+    with open(directory, mode = "w", newline='') as csvfile:
         fieldNames = fields
         writer = csv.DictWriter(csvfile, fieldnames=fieldNames)
         writer.writeheader()

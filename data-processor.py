@@ -1,14 +1,14 @@
 import csv
 import os
 
-def setColumnCount(operation):
-    if operation == 1:
-        dataColumns = 5
-    elif operation == 2:
-        dataColumns = 12
-    elif operation == 3:
-        dataColumns = 1
-    return dataColumns
+# def setColumnCount(operation):
+#     if operation == 1:
+#         dataColumns = 5
+#     elif operation == 2:
+#         dataColumns = 12
+#     elif operation == 3:
+#         dataColumns = 1
+#     return dataColumns
 
 def isSinkNode():
     isSink = input("Is the node a sink node: ")
@@ -50,18 +50,20 @@ def processor(filePath, fileName, columnCount,nodeNumber):
     csvMaker(entries, fileName, nodeNumber)
     print(f"Finished generating {fileName}-Node-{nodeNumber}")
 
-def processSensorLog(filePath, columnCount, nodeNumber):
+def processSensorLog(filePath, nodeNumber):
     fileName = "SensorLog"
     fileExtension = ".txt"
     txtFile = fileName + fileExtension
     path = os.path.join(filePath, txtFile)
+    columnCount = 12
     processor(path, fileName, columnCount, nodeNumber)
 
-def processSensorLogFailedSend(filePath, columnCount, nodeNumber):
+def processSensorLogFailedSend(filePath, nodeNumber):
     fileName = "SensorLogFailedSend"
     fileExtension = ".txt"
     txtFile = fileName + fileExtension
     path = os.path.join(filePath, txtFile)
+    columnCount = 12
     processor(path, fileName, columnCount, nodeNumber)
 
 def processSinkNode(filePath):
@@ -69,16 +71,17 @@ def processSinkNode(filePath):
 
 nodeNumber = int(input("Enter node number: "))
 
-operation = int(input(
-'''What are you going to process?
-1 - Anemometer Data
-2 - Sensor Data
-3 - Latency Data
-'''))
+# operation = int(input(
+# '''What are you going to process?
+# 1 - Anemometer Data
+# 2 - Sensor Data
+# 3 - Latency Data
+# '''))
 
-columnCount = setColumnCount(operation)
+# columnCount = setColumnCount(operation)
+
 isSink = isSinkNode()
 
 fileDirectory = input(r"Enter file directory: ")
 
-processSensorLog(fileDirectory, columnCount, nodeNumber)
+processSensorLog(fileDirectory, nodeNumber)

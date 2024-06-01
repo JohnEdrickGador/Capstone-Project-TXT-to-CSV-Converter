@@ -50,6 +50,7 @@ def processor(filePath, fileName, columnCount,nodeNumber):
     csvMaker(entries, fileName, nodeNumber)
     print(f"Finished generating {fileName}-Node-{nodeNumber}")
 
+#sensor data
 def processSensorLog(filePath, nodeNumber):
     fileName = "SensorLog"
     fileExtension = ".txt"
@@ -66,8 +67,78 @@ def processSensorLogFailedSend(filePath, nodeNumber):
     columnCount = 12
     processor(path, fileName, columnCount, nodeNumber)
 
-def processSinkNode(filePath):
-    return True
+def processSensorLogFailedPublish(filePath, nodeNumber):
+    fileName = "SensorLogFailedPublish"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 12
+    processor(path, fileName, columnCount, nodeNumber)
+
+def processSensorLogPublished(filePath, nodeNumber):
+    fileName = "SensorLogPublished"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 12
+    processor(path, fileName, columnCount, nodeNumber)
+
+#anemometer functions
+def processIndoorAnemometerLog(filePath, nodeNumber):
+    fileName = "IndoorAnemometerLog"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 5
+    processor(path, fileName, columnCount, nodeNumber)
+
+def processIndoorAnemometerLogFailedPublish(filePath, nodeNumber):
+    fileName = "IndoorAnemometerLogFailedPublish"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 5
+    processor(path, fileName, columnCount, nodeNumber)
+
+def processIndoorAnemometerLogPublished(filePath, nodeNumber):
+    fileName = "IndoorAnemometerLogPublished"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 5
+    processor(path, fileName, columnCount, nodeNumber)
+
+def processOutdoorAnemometerLog(filePath, nodeNumber):
+    fileName = "OutdoorAnemometerLog"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 5
+    processor(path, fileName, columnCount, nodeNumber)
+
+def processOutdoorAnemometerLogFailedPublish(filePath, nodeNumber):
+    fileName = "OutdoorAnemometerLogFailedPublish"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 5
+    processor(path, fileName, columnCount, nodeNumber)
+
+def processOutdoorAnemometerLogPublished(filePath, nodeNumber):
+    fileName = "OutdoorAnemometerLogPublished"
+    fileExtension = ".txt"
+    txtFile = fileName + fileExtension
+    path = os.path.join(filePath, txtFile)
+    columnCount = 5
+    processor(path, fileName, columnCount, nodeNumber)
+
+# def processDelayLog(filePath, nodeNumber):
+#     fileName = f"Node{nodeNumber}DelayLog"
+#     fileExtension = ".txt"
+#     txtFile = fileName + fileExtension
+#     path = os.path.join(filePath, txtFile)
+#     columnCount = 1
+#     processor(path, fileName, columnCount, nodeNumber)
 
 nodeNumber = int(input("Enter node number: "))
 
@@ -84,4 +155,21 @@ isSink = isSinkNode()
 
 fileDirectory = input(r"Enter file directory: ")
 
-processSensorLog(fileDirectory, nodeNumber)
+if isSink:
+    #generate sensor data
+    processSensorLog(fileDirectory, nodeNumber)
+    processSensorLogFailedPublish(fileDirectory, nodeNumber)
+    processSensorLogFailedSend(fileDirectory, nodeNumber)
+    processSensorLogPublished(fileDirectory, nodeNumber)
+
+    #generate anemometer data
+    processIndoorAnemometerLog(fileDirectory, nodeNumber)
+    processIndoorAnemometerLogFailedPublish(fileDirectory, nodeNumber)
+    processIndoorAnemometerLogPublished(fileDirectory, nodeNumber)
+
+    processOutdoorAnemometerLog(fileDirectory, nodeNumber)
+    processOutdoorAnemometerLogFailedPublish(fileDirectory, nodeNumber)
+    processOutdoorAnemometerLogPublished(fileDirectory, nodeNumber)
+else:
+    processSensorLog(fileDirectory, nodeNumber)
+    processSensorLogFailedSend(fileDirectory, nodeNumber)

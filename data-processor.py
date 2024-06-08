@@ -132,24 +132,8 @@ def processOutdoorAnemometerLogPublished(filePath, nodeNumber):
     columnCount = 5
     processor(path, fileName, columnCount, nodeNumber)
 
-# def processDelayLog(filePath, nodeNumber):
-#     fileName = f"Node{nodeNumber}DelayLog"
-#     fileExtension = ".txt"
-#     txtFile = fileName + fileExtension
-#     path = os.path.join(filePath, txtFile)
-#     columnCount = 1
-#     processor(path, fileName, columnCount, nodeNumber)
 
 nodeNumber = int(input("Enter node number: "))
-
-# operation = int(input(
-# '''What are you going to process?
-# 1 - Anemometer Data
-# 2 - Sensor Data
-# 3 - Latency Data
-# '''))
-
-# columnCount = setColumnCount(operation)
 
 isSink = isSinkNode()
 
